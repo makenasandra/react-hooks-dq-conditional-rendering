@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-function MenuBar(props) {
+function MenuBar({itemClassName, handleMenuItemClick}) {
   /*
 
   The 'span' tags below are the menu items. Think about the way a menu 
@@ -11,23 +11,39 @@ function MenuBar(props) {
   this component be made aware of what is currently the active menu item?
 
   */
+  // const [itemClassName, setItemClassName] = useState({user:"item", photo: "item", cocktail:"item", themeisle:"item" })
+  // function handleMenuItemClick(e){
+  //   const {className} = e.target
+  //   if(className ==="user large icon"){
+  //     setItemClassName({user:"item active", photo: "item", cocktail:"item", themeisle:"item" })
+  //   } else if(className ==="photo large icon"){
+  //     setItemClassName({user:"item", photo: "item active", cocktail:"item", themeisle:"item" })
+  //   } else if(className ==="cocktail large icon"){
+  //     setItemClassName({user:"item", photo: "item", cocktail:"item active", themeisle:"item" })
+  //   } else if(className ==="themeisle large icon"){
+  //     setItemClassName({user:"item", photo: "item", cocktail:"item", themeisle:"item active" })
+  //   } 
+    
+  // }
+  
+
 
   return (
     <div className="ui four item menu">
-      <span className="item active">
-        <i className="user large icon" />
+      <span className={itemClassName.user} >
+        <i className="user large icon" onClick={handleMenuItemClick}/>
       </span>
 
-      <span className="item">
-        <i className="photo large icon" />
+      <span className={itemClassName.photo} >
+        <i className="photo large icon" onClick={handleMenuItemClick}/>
       </span>
 
-      <span className="item">
-        <i className="cocktail large icon" />
+      <span className={itemClassName.cocktail} >
+        <i className="cocktail large icon" onClick={handleMenuItemClick}/>
       </span>
 
-      <span className="item">
-        <i className=" themeisle large icon" />
+      <span className={itemClassName.themeisle} >
+        <i className="themeisle large icon" onClick={handleMenuItemClick}/>
       </span>
     </div>
   );

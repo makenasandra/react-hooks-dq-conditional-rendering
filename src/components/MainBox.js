@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import MenuBar from "./MenuBar";
 import { Profile, Photos, Cocktails, Pokemon } from "./pages";
 
@@ -11,13 +11,35 @@ function MainBox() {
     - Which component should have methods to control state? 
     - Where should these methods be called?
   */
+  
+  const [itemClassName, setItemClassName] = useState({ user: "item active", photo: "item", cocktail: "item", themeisle: "item" });
+  const [pageToDisplay, setPageToDisplay] = useState(<Profile />);
+  let detailsToDisplay = <Profile />;;
+  function handleMenuItemClick(e) {
+    const { className } = e.target
+    if (className === "user large icon") {
+      setItemClassName({ user: "item active", photo: "item", cocktail: "item", themeisle: "item" });
+      setPageToDisplay(<Profile />);
+    } else if (className === "photo large icon") {
+      setItemClassName({ user: "item", photo: "item active", cocktail: "item", themeisle: "item" });
+      setPageToDisplay(<Photos />);
 
-  let detailsToDisplay = <div>Hi, I'm a div!</div>;
+    } else if (className === "cocktail large icon") {
+      setItemClassName({ user: "item", photo: "item", cocktail: "item active", themeisle: "item" })
+      setPageToDisplay(<Cocktails />);
+
+    } else if (className === "themeisle large icon") {
+      setItemClassName({ user: "item", photo: "item", cocktail: "item", themeisle: "item active" })
+      setPageToDisplay(<Pokemon />);
+
+    }
+  }
+
 
   return (
     <div>
-      <MenuBar />
-      {detailsToDisplay}
+      <MenuBar itemClassName={itemClassName} handleMenuItemClick={handleMenuItemClick} />
+      {pageToDisplay}
     </div>
   );
 }
